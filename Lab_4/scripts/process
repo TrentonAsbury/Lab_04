@@ -1,0 +1,86 @@
+<?php
+include '../includes/header.php';
+?>
+
+<?php $title="Processing Form";?>
+<?php 
+	$quantity = $_POST['quantity'];
+	$shipping = $_POST['shipping'];
+	$company = $_POST['company'];
+	// $total = $_POST['total'];
+?>
+<!--
+<!DOCTYPE HTML>
+<html>
+	<head><title>SCC:: <?php echo $title; ?></title>
+		<style>
+			span{color: red; font-weight:900;}
+		</style>
+		
+		
+		
+	</head>-->
+	<body>
+		
+		<section id="wrapper">
+<header><h1>Welcome to CIS 2250</h1></header>
+<h1 class="date">Current Date: &nbsp;<?php $date = date('F - d - Y');
+	echo $date;?></h1>
+
+<section id="main">
+	<article id="left">
+
+		
+	</article>
+	<article id="right">
+		
+		
+		
+		<h1>Calculations are DONE here!</h1>
+		
+		<?php
+		$errors;
+			if(!empty($quantity)){
+						
+				if(is_numeric($shipping)){
+				echo "<p>Quantity: " . $quantity . "</p>";
+				}
+				else {
+					echo "<span><br>ERROR: Quantity should be number!!!</span>";
+					
+				}
+			}
+			else {
+				echo "<span><br>ERROR: Quantity should not be empty!!!</span>";
+			}
+			
+			
+			if(!empty($shipping)){
+				if(is_numeric($shipping)){
+				$shipping = number_format($shipping, 2);
+				echo "<p>Shipping: $" . $shipping . "</p>";
+				}
+				else {
+					echo "<span><br>ERROR: Shipping should be number!!!</span>";
+				}
+			}
+			else {
+				echo "<span><br>ERROR: Shipping should not be empty!!!</span>";
+			}
+			
+			
+			echo "<p>Company: " . $company . "</p>";
+		?>
+		
+		<!-- CALCULATIONS -->
+		<?php 
+			$total =  $quantity * $shipping;
+			
+			$total = number_format($total, 2);
+			
+			echo "<p>Total Charges: $" . $total . "</p>";
+		?>
+		</section>
+	<?php
+include '../includes/footer.php';
+?>
